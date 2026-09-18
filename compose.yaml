@@ -1,0 +1,21 @@
+services:
+  studio:
+    build:
+      context: .
+      target: web
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      VTON_PROVIDER: ${VTON_PROVIDER:-fashn}
+      VTON_DATA_DIR: /app/data
+      VTON_WEIGHTS_DIR: /app/weights
+      VTON_API_KEY: ${VTON_API_KEY:-}
+      VTON_REMOTE_URL: ${VTON_REMOTE_URL:-}
+      VTON_REMOTE_API_KEY: ${VTON_REMOTE_API_KEY:-}
+      VTON_RETENTION_HOURS: ${VTON_RETENTION_HOURS:-24}
+      VTON_MAX_PENDING: ${VTON_MAX_PENDING:-8}
+    volumes:
+      - studio-data:/app/data
+    restart: unless-stopped
+volumes:
+  studio-data:

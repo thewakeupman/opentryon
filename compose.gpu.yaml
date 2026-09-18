@@ -1,0 +1,14 @@
+services:
+  studio:
+    build:
+      target: gpu
+    gpus: all
+    environment:
+      VTON_PROVIDER: fashn
+      VTON_DEVICE: cuda
+      HF_HOME: /home/studio/.cache/huggingface
+    volumes:
+      - ./weights:/app/weights:ro
+      - model-cache:/home/studio/.cache/huggingface
+volumes:
+  model-cache:

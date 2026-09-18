@@ -1,0 +1,23 @@
+name: Feature request
+description: Propose an improvement or a new model provider
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: Who needs this and what are they trying to accomplish?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: licensing
+    attributes:
+      label: Model, data and license considerations
+      description: Required for model providers or third-party assets.

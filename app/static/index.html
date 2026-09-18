@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="OpenTryOn 开源 AI 试衣工作台。上传人物和服装图片，轻松探索全新穿搭。">
+  <title>OpenTryOn · AI 试衣间</title>
+  <link rel="icon" href="/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/zh.css">
+  <link rel="stylesheet" href="/minimal.css">
+  <script src="/locale.js?v=1" defer></script>
+  <script src="/app.js?v=3" defer></script>
+</head>
+<body>
+<svg class="icon-defs" xmlns="http://www.w3.org/2000/svg"><defs>
+ <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/></symbol>
+ <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+ <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+ <symbol id="i-shirt" viewBox="0 0 24 24"><path d="m8 3-6 4 3 5 3-2v11h8V10l3 2 3-5-6-4a4 4 0 0 1-8 0Z"/></symbol>
+ <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21v-3a8 8 0 0 1 16 0v3"/></symbol>
+ <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+ <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></symbol>
+ <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+ <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h5m5 0h6M4 17h10m5 0h1"/><circle cx="11" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></symbol>
+ <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+</defs></svg>
+<aside class="sidebar">
+  <a class="brand" href="/" id="brand-home" aria-label="OpenTryOn 首页"><span class="brand-mark" id="brand-mark">O<span>↗</span></span><span id="brand-name">OpenTryOn</span><span class="brand-dot">.</span></a>
+  <span class="workspace-label">我的工作空间</span>
+  <nav aria-label="主导航">
+    <button class="nav-item active" data-view="studio"><svg><use href="#i-spark"/></svg>试衣工作台<span class="nav-count">01</span></button>
+    <button class="nav-item" data-view="sessions"><svg><use href="#i-clock"/></svg>最近记录</button>
+  </nav>
+  <span class="workspace-label resource-label">工具与资源</span>
+  <nav aria-label="工具与资源">
+    <a class="nav-item" href="/docs" target="_blank" rel="noopener"><svg><use href="#i-code"/></svg>API 调试台<span class="external">↗</span></a>
+    <button class="nav-item" data-open="setup"><svg><use href="#i-sliders"/></svg>模型与设置</button>
+    <a class="nav-item" id="project-repository" href="#" target="_blank" rel="noopener" hidden><svg><use href="#i-grid"/></svg>项目源代码<span class="external">↗</span></a>
+    <a class="nav-item" href="https://github.com/fashn-AI/fashn-vton-1.5" target="_blank" rel="noopener"><svg><use href="#i-grid"/></svg>推理模型来源<span class="external">↗</span></a>
+  </nav>
+  <div class="sidebar-bottom"><div class="opensource"><span class="tiny-spark">✳</span><strong>为你的灵感而生。</strong><p>开源工具，自由切换模型。<br>让穿搭多一点可能。</p><button data-open="about">了解工具箱 <span>↗</span></button></div>
+  <div class="version"><span class="live-dot"></span><span id="version-brand">OpenTryOn</span><span>v0.1.0</span></div></div>
+</aside>
+<div class="page">
+  <header class="topbar"><div>工作空间 <span>/</span> <strong id="breadcrumb">试衣工作台</strong></div><div class="topbar-right"><span class="local-badge"><span class="live-dot"></span>自主部署工作空间</span><button class="avatar" id="brand-avatar" data-open="connection" aria-label="连接设置">O</button></div></header>
+  <main>
+  <section id="studio-view">
+    <div class="intro"><div><div class="eyebrow"><span></span>AI 虚拟试衣工作台</div><h1>焕新穿搭，<em>依然是你。</em></h1><p>上传人物与服装图片，让心仪穿搭即刻呈现。</p></div><button id="reset" class="secondary small">＋ 新建试衣</button></div>
+    <div class="workspace">
+      <form id="tryon-form" class="controls">
+        <section class="panel input-panel"><div class="section-title"><span class="step">01</span><h2>人物照片</h2><span class="tag">人物图片</span></div>
+          <label class="dropzone model-drop" id="model-drop"><input id="model-input" type="file" accept="image/jpeg,image/png,image/webp" aria-label="上传人物图片"><img id="model-thumb" alt="已上传的人物图片" hidden><div class="upload-prompt"><span class="upload-icon"><svg><use href="#i-person"/></svg><span>＋</span></span><strong>将人物图片拖到这里</strong><span>或 <b>选择文件</b></span><small>支持 JPG、PNG、WebP · 最大 15 MB</small></div><span class="replace-prompt">↥ 更换图片</span></label>
+          <div class="input-footer"><span id="model-caption">单人照片，姿态清晰，光线充足。</span><button type="button" id="sample-model">使用示例 ↗</button></div>
+        </section>
+        <section class="panel input-panel"><div class="section-title"><span class="step">02</span><h2>服装图片</h2><span class="tag">目标服装</span></div>
+          <fieldset class="categories"><legend class="sr-only">服装类别</legend><label><input type="radio" name="category" value="top" checked><span>上装</span></label><label><input type="radio" name="category" value="bottom"><span>下装</span></label><label><input type="radio" name="category" value="dress"><span>连衣裙</span></label><label><input type="radio" name="category" value="outerwear"><span>外套</span></label></fieldset>
+          <label class="dropzone garment-drop" id="garment-drop"><input id="garment-input" type="file" accept="image/jpeg,image/png,image/webp" aria-label="上传服装图片"><img id="garment-thumb" alt="已上传的服装图片" hidden><div class="upload-prompt"><span class="upload-icon"><svg><use href="#i-shirt"/></svg><span>＋</span></span><strong>将服装图片拖到这里</strong><span>或 <b>选择文件</b></span><small>支持平铺商品图或模特穿着图</small></div><span class="replace-prompt">↥ 更换图片</span></label>
+          <div class="input-footer"><span id="garment-caption">尽量让服装完整、清晰地呈现。</span><button type="button" id="sample-garment">使用示例 ↗</button></div>
+        </section>
+        <section class="panel settings-panel"><details><summary><svg><use href="#i-sliders"/></svg>生成设置<span>自定义 <b>⌄</b></span></summary><div class="settings-body"><label>画质<select id="steps"><option value="20">快速 · 20 步</option><option value="30" selected>均衡 · 30 步</option><option value="50">精细 · 50 步</option></select></label><label>服装图片类型<select id="photo-type"><option value="flat-lay">商品图 / 平铺图</option><option value="model">模特穿着图</option></select></label><label>随机种子<input id="seed" type="number" min="0" max="4294967295" value="42" required></label></div></details>
+          <label class="preserve-setting"><span class="protection-icon"><svg><use href="#i-check"/></svg></span><span><strong id="preserve-title">保留你的独特模样</strong><small id="preserve-description">保护面部、头发与周围场景</small></span><input id="preserve" type="checkbox" checked role="switch" aria-label="保护人物身份与背景"></label>
+        </section>
+        <label id="public-consent-panel" class="public-consent" hidden><input id="public-consent" type="checkbox"><span>我同意将这些图片发送至 FASHN 的 Hugging Face 公开演示服务。远端副本按该服务的保留政策处理。 <a href="https://huggingface.co/spaces/fashn-ai/fashn-vton-1.5" target="_blank" rel="noopener">查看服务 ↗</a></span></label>
+        <button id="generate" type="submit" class="primary generate" disabled><svg><use href="#i-spark"/></svg><span>开始试衣</span><svg><use href="#i-arrow"/></svg></button>
+        <p class="under-button" id="generate-hint">上传人物和服装两张图片，即可开始。</p>
+      </form>
+      <section class="panel preview-panel"><div class="preview-heading"><div><span class="step">03</span><h2>你的试衣间</h2></div><span class="preview-status" id="preview-status">准备迎接新穿搭</span></div>
+        <div class="preview-toolbar"><div class="segmented" aria-label="预览方式"><button type="button" class="selected" data-mode="result">试衣结果</button><button type="button" data-mode="compare" disabled>前后对比</button></div><button id="download-top" class="icon-button" disabled aria-label="下载试衣结果"><svg><use href="#i-down"/></svg></button></div>
+        <div class="preview-stage" id="preview-stage">
+          <div id="empty-preview" class="empty-preview"><div class="editorial-collage"><div class="collage-caption">还是你，<br>又一种可能。</div><div class="photo-frame"><img src="/sample-model.webp?v=3" alt="示例人物：金发女性身穿黑色夹克与白色连衣裙"><span>人物原图</span></div><div class="garment-frame"><img src="/sample-garment.webp?v=3" alt="示例服装：模特穿着白色长袖上装与蕾丝短裤"><span>目标服装</span></div><span class="collage-star">✳</span><div class="collage-path">↗</div><span class="sample-label">示例输入图片 · 非生成结果</span></div><h3>每一种穿搭，都是新的可能。</h3><p>试衣效果将在这里呈现。<br>从两张图片开始，发现你的新风格。</p><button id="load-samples" class="text-button">试用示例图片 <span>↗</span></button></div>
+          <div id="result-preview" class="result-preview" hidden><img id="result-image" alt="AI 生成的试衣结果"><div id="before-layer" class="before-layer" hidden><img id="before-image" alt="试衣前的人物原图"></div><div id="compare-line" class="compare-line" hidden><span>↔</span></div><span class="image-label after-label">试衣后</span><span class="image-label before-label" id="before-label" hidden>试衣前</span><input id="compare-range" type="range" min="0" max="100" value="50" aria-label="试衣前后对比滑块" hidden></div>
+          <div id="working" class="working" hidden><div class="spinner"></div><h3 id="working-title">正在准备新穿搭</h3><p id="working-description">试衣任务已加入生成队列。</p><span id="elapsed">已用时 0 秒</span></div>
+        </div>
+        <div class="preview-bottom"><div><span class="live-dot"></span><span id="result-meta">换个风格，每处细节都值得期待。</span></div><button id="download" class="secondary small" disabled><svg><use href="#i-down"/></svg>下载 PNG</button></div>
+        <div class="quality-strip"><span><svg><use href="#i-person"/></svg><span id="identity-caption">人物保护</span></span><span><svg><use href="#i-check"/></svg>姿态保持</span><span><svg><use href="#i-grid"/></svg>原图尺寸</span></div>
+      </section>
+    </div>
+    <div class="workspace-footer"><span id="engine-label"><span class="status-dot"></span>正在检查模型连接…</span><button data-open="setup">模型设置 <span>↗</span></button><span class="footer-note">自由探索穿搭，发现更多可能。</span></div>
+  </section>
+  <section id="sessions-view" hidden><div class="intro"><div><div class="eyebrow">我的工作空间</div><h1>最近的<em>试衣记录。</em></h1><p>回顾你在这个浏览器中创建的穿搭。</p></div></div><div id="sessions-list" class="sessions-list"></div><p class="sessions-note" id="retention-note">图片将在 24 小时后自动清理，请及时下载喜欢的作品。</p></section>
+  </main>
+  <footer class="page-footer"><span><b id="footer-brand">OpenTryOn</b><span> / </span><span id="footer-tagline">开源 AI 虚拟试衣</span></span><span>随心想象，轻松试穿。</span></footer>
+</div>
+<div id="toast" class="toast" role="status" hidden></div>
+<dialog id="setup-dialog"><button class="close-dialog" aria-label="关闭弹窗">×</button><div class="eyebrow">打造你的试衣间</div><h2>连接你的试衣间。</h2><p id="setup-status">正在检查模型配置…</p><h3>没有显卡？试试官方在线演示</h3><p>在 <code>.env</code> 中设置 <code>VTON_PROVIDER=space</code> 后重启。每次上传须明确同意。公共服务有额度限制，仅提供模型自身的人物保持能力，不含额外的像素保护合成。</p><h3>本地 FASHN 模型</h3><p>安装推理环境和模型权重后，重启服务。建议使用显存充足的 NVIDIA 显卡；CPU 推理会慢得多。</p><pre>pip install -e ".[inference]"
+python scripts/download_weights.py
+python -m uvicorn app.main:app --port 8000</pre><h3>已有 GPU 服务器？</h3><p>在 GPU 服务器上部署本工具箱和本地模型，再在这台电脑的 <code>.env</code> 中配置以下内容并重启：</p><pre>VTON_PROVIDER=remote
+VTON_REMOTE_URL=https://your-gpu-server
+VTON_REMOTE_API_KEY=your-worker-key</pre><p class="dialog-note">首次生成时需要加载模型。效果会受姿态、光线和服装复杂度影响。GPU、Docker 配置和依赖许可详见 README.zh-CN.md。</p><button class="primary" id="refresh-health">重新检查连接</button></dialog>
+<dialog id="connection-dialog"><button class="close-dialog" aria-label="关闭弹窗">×</button><div class="eyebrow">工作空间访问</div><h2>连接设置。</h2><p>如果服务端设置了 API 密钥，请在下方填写。密钥仅保存在当前浏览器标签页的会话存储中。</p><form id="connection-form"><label class="field-label">API 密钥<input id="api-key" type="password" autocomplete="off" placeholder="请输入工作空间 API 密钥"></label><button class="primary" type="submit">连接工作空间</button></form></dialog>
+<dialog id="about-dialog"><button class="close-dialog" aria-label="关闭弹窗">×</button><div class="eyebrow">开放，自由扩展</div><h2>随你的需求，自由生长。</h2><p><span id="about-brand">OpenTryOn</span> 将简洁的试衣工作台与模块化 Python API 结合。你可以本地运行 FASHN VTON、连接自己的 GPU 服务，或接入其他试衣模型。</p><div class="about-features"><span>01 · 上传人物与服装图片</span><span>02 · 选择四种服装类别之一</span><span>03 · 生成试衣、对比效果并下载</span></div><p>工具箱原创代码采用 MIT 许可。推理模型与示例素材保留各自的上游许可；FASHN 人体分割模型另有 NVIDIA 许可条款。详见 THIRD_PARTY_NOTICES.md。</p><a class="primary" href="/docs" target="_blank" rel="noopener">查看 API 文档 ↗</a></dialog>
+</body></html>

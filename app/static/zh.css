@@ -1,0 +1,79 @@
+/* CJK typography: retain the dimensional theme with comfortable Chinese text sizing. */
+html[lang="zh-CN"] body {
+  font-family: "DM Sans", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  line-height: 1.6;
+}
+html[lang="zh-CN"] h1 {
+  font-family: "Manrope", "PingFang SC", "Microsoft YaHei", sans-serif;
+  letter-spacing: -.5px;
+  font-size: 35px;
+}
+html[lang="zh-CN"] h1 em,
+html[lang="zh-CN"] .empty-preview h3,
+html[lang="zh-CN"] .working h3,
+html[lang="zh-CN"] dialog h2 {
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-style: normal;
+  letter-spacing: .5px;
+}
+html[lang="zh-CN"] .nav-item { font-size: 13px; }
+html[lang="zh-CN"] .workspace-label { font-size: 10px; letter-spacing: 2px; }
+html[lang="zh-CN"] h2 { font-size: 14px; }
+html[lang="zh-CN"] .intro p { font-size: 13px; }
+html[lang="zh-CN"] .upload-prompt { font-size: 11px; }
+html[lang="zh-CN"] .upload-prompt strong { font-size: 12px; }
+html[lang="zh-CN"] .upload-prompt small,
+html[lang="zh-CN"] .input-footer,
+html[lang="zh-CN"] .input-footer button { font-size: 10px; }
+html[lang="zh-CN"] .input-footer > span { max-width: 72%; }
+html[lang="zh-CN"] .categories span { font-size: 11px; }
+html[lang="zh-CN"] .tag,
+html[lang="zh-CN"] .small,
+html[lang="zh-CN"] summary,
+html[lang="zh-CN"] .segmented button,
+html[lang="zh-CN"] .text-button,
+html[lang="zh-CN"] .settings-body label,
+html[lang="zh-CN"] .settings-body select,
+html[lang="zh-CN"] .settings-body input { font-size: 11px; }
+html[lang="zh-CN"] .settings-body label { min-width: 0; }
+html[lang="zh-CN"] .preserve-setting strong { font-size: 11px; }
+html[lang="zh-CN"] .preserve-setting small { font-size: 10px; line-height: 1.7; }
+html[lang="zh-CN"] .primary { font-size: 12px; }
+html[lang="zh-CN"] .under-button { font-size: 10px; }
+html[lang="zh-CN"] .preview-status,
+html[lang="zh-CN"] .quality-strip,
+html[lang="zh-CN"] .workspace-footer,
+html[lang="zh-CN"] .workspace-footer button,
+html[lang="zh-CN"] .preview-bottom > div { font-size: 10px; }
+html[lang="zh-CN"] .empty-preview p { font-size: 12px; }
+html[lang="zh-CN"] .empty-preview h3 { text-wrap: balance; }
+html[lang="zh-CN"] .collage-caption { font-size: 9px; }
+html[lang="zh-CN"] .sample-label { font-size: 8px; letter-spacing: 1px; }
+html[lang="zh-CN"] .photo-frame > span,
+html[lang="zh-CN"] .garment-frame > span { font-size: 8px; letter-spacing: 1px; bottom: 4px; }
+html[lang="zh-CN"] .public-consent { font-size: 11px; }
+html[lang="zh-CN"] .public-consent > span { min-width: 0; }
+html[lang="zh-CN"] .image-label { font-size: 10px; }
+html[lang="zh-CN"] .page-footer { font-size: 9px; letter-spacing: 1px; }
+html[lang="zh-CN"] .page-footer > span:first-child { font-size: 9px; }
+html[lang="zh-CN"] .toast { line-height: 1.8; }
+@media (max-width: 1150px) {
+  html[lang="zh-CN"] .input-footer { flex-wrap: wrap; }
+  html[lang="zh-CN"] .input-footer > span { max-width: 100%; }
+  html[lang="zh-CN"] .quality-strip { gap: 12px; flex-wrap: wrap; }
+}
+@media (max-width: 850px) {
+  html[lang="zh-CN"] .sidebar .nav-item { font-size: 0; }
+  html[lang="zh-CN"] h1 { font-size: 29px; }
+}
+@media (max-width: 690px) {
+  html[lang="zh-CN"] h1 { font-size: 28px; line-height: 1.5; }
+  html[lang="zh-CN"] h1 em { white-space: nowrap; }
+  html[lang="zh-CN"] .intro > .secondary { font-size: 0; flex-shrink: 0; }
+  html[lang="zh-CN"] .intro p { font-size: 12px; }
+  html[lang="zh-CN"] .preview-status { font-size: 9px; }
+  html[lang="zh-CN"] .preview-heading { gap: 8px; }
+  html[lang="zh-CN"] .preview-bottom { flex-wrap: wrap; }
+  html[lang="zh-CN"] .preview-bottom > div { max-width: 100%; }
+  html[lang="zh-CN"] dialog h2 { font-size: 25px; }
+}
