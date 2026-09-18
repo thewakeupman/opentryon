@@ -13,8 +13,8 @@ Upload a person and a garment, choose a category, generate a try-on, compare it 
 Python 3.11 or 3.12 recommended. No Node build or hosted API subscription required.
 
 ```bash
-git clone <your-published-repository-url>
-cd <your-repository-directory>
+git clone https://github.com/thewakeupman/opentryon.git
+cd opentryon
 python -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
@@ -30,7 +30,7 @@ Copy-Item .env.example .env
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-Open **http://localhost:8000**. Interactive API documentation: **http://localhost:8000/docs**. The toolkit has not been published to GitHub automatically; replace the clone placeholder after publishing, or start from this local checkout.
+Open **http://localhost:8000**. Interactive API documentation: **http://localhost:8000/docs**.
 
 ## Make it your own
 

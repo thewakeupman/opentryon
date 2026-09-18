@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="VTON_", env_file=".env", extra="ignore")
     app_name: str = Field(default="OpenTryOn", min_length=1, max_length=40)
     app_tagline: str = Field(default="开源 AI 虚拟试衣", min_length=1, max_length=80)
-    repository_url: str = ""
+    repository_url: str = "https://github.com/thewakeupman/opentryon"
     provider: Literal["fashn", "remote", "space"] = "fashn"
     weights_dir: Path = Path("weights")
     data_dir: Path = Path("data")
